@@ -14,7 +14,9 @@ public class SimplePhysicsController : MonoBehaviour
     public int score = 0; 
     public float gravityScale;
     public Vector3 movementVector;
+    int jumpcounter =1; 
     public bool doubleJump = false;
+    public bool isJumping; 
     
 
 
@@ -46,29 +48,44 @@ public class SimplePhysicsController : MonoBehaviour
 
 
     private void Update(){
+
+        thisRigidbody2D.gravityScale = gravityScale;
+
         //jump up with 'space' 
         if (Input.GetKeyDown(KeyCode.Space)) {
-            doubleJump = true;
+            isJumping = true;
+            Debug.Log(jumpcounter);
 
-            this.thisRigidbody2D.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
-            thisRigidbody2D.gravityScale = gravityScale;
+            if (jumpcounter >= 2) {
+                jumpcounter = 0;
+            }
 
-            if (GameObject.Find("GroundDetection").GetComponent<GroundCheck2>().isGrounded == true) {
-                thisRigidbody2D.gravityScale = 1;
+            if (GameObject.Find("Feet").GetComponent<GroundCheck2>().isGrounded == true) {
+                //thisRigidbody2D.gravityScale = 1;
 
-                //DOUBLE jump 
-                if (doubleJump == true) {
-                    doubleJump = false;
+                thisRigidbody2D.gravityScale = 0;
+                this.thisRigidbody2D.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+
+                doubleJump = true;
+
+                
+
+            } else if (Input.GetKeyDown(KeyCode.Space) && doubleJump == true) {
                     thisRigidbody2D.gravityScale = 0;
                     this.thisRigidbody2D.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+                    doubleJump = false;
 
                 }
-
-            //falling    
             } else {
                 thisRigidbody2D.gravityScale = gravityInAir;
 
             }
+        
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.CompareTag("Ground")) {
+            isJumping = false; 
         }
     }
 

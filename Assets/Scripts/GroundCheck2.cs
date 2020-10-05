@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class GroundCheck2 : MonoBehaviour {
 
-    public bool isGrounded = true;
+    public bool isGrounded = false;
 
-    public void onTriggerStay2D(Collider2D other) {
-        isGrounded = true;
 
+    public void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Ground")) {
+            isGrounded = true;
+
+        }
+        if (other.gameObject.CompareTag("Platform")) {
+            isGrounded = true;
+
+        }
     }
 
-    public void OnTriggerExit2D() {
+    public void OnTriggerExit2D(Collider2D other) {
         isGrounded = false;
 
     }

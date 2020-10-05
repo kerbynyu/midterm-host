@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreBehaviourType2 : MonoBehaviour
-{
+public class ScoreBehaviourType2 : MonoBehaviour {
 
     public scoreBehaviour sc;
 
     
-    void Start()
-    {
+    void Start(){
         gameObject.SetActive(false);
+
     }
+
     /*
     private void OnTriggerEnter2D(Collider2D other) {
 
@@ -21,9 +21,10 @@ public class ScoreBehaviourType2 : MonoBehaviour
     }
     */
 
-    void udate(){
+    void Update(){
         if(sc.collected == true) {
             gameObject.SetActive(true);
+
         }
     }
 }
