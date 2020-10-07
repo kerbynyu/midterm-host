@@ -16,13 +16,15 @@ public class SimplePhysicsController : MonoBehaviour
     public Vector3 movementVector;
     int jumpcounter =1; 
     public bool doubleJump = false;
-    public bool isJumping; 
-    
+    public bool isJumping;
 
+
+    Animator anim;
 
     void Start(){
         GetComponent<Rigidbody2D>();
-       
+
+        anim = GetComponent<Animator>();
     }
 
 
@@ -31,8 +33,12 @@ public class SimplePhysicsController : MonoBehaviour
         if (Input.GetKey(KeyCode.A)){
             this.thisRigidbody2D.AddForce(-Vector2.right * force * Time.deltaTime, ForceMode2D.Impulse);
 
-            if(thisSprite.flipX == true){
-                thisSprite.flipX = false; 
+            if(thisSprite.flipX == false){
+                thisSprite.flipX = true; 
+            }
+
+            if (anim.gameObject.activeSelf) {
+                anim.SetTrigger("Walking");
             }
         }
 
@@ -40,9 +46,19 @@ public class SimplePhysicsController : MonoBehaviour
         if (Input.GetKey(KeyCode.D)){
             this.thisRigidbody2D.AddForce(Vector2.right * force * Time.deltaTime, ForceMode2D.Impulse);
 
-            if (thisSprite.flipX == false){
-                thisSprite.flipX = true;
+            if (thisSprite.flipX == true){
+                thisSprite.flipX = false;
             }
+          
+          
+
+            if (anim.gameObject.activeSelf) {
+                anim.SetTrigger("Walking");
+            }
+        }
+
+        if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) ){
+            anim.SetTrigger("Idle");
         }
     }
 
