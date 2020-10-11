@@ -23,6 +23,7 @@ public class Feet : MonoBehaviour
             player.transform.parent = other.gameObject.transform;
 
         }
+
     }
 
     private void OnTriggerExit2D(Collider2D other) {
