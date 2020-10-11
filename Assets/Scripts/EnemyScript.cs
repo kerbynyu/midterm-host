@@ -23,13 +23,18 @@ public class EnemyScript : MonoBehaviour{
     Rigidbody2D rb2d;
 
     private bool isAgro;
-    private bool isSearching; 
+    private bool isSearching;
+
+
+    Animator anim;
 
     void Start(){
         rb2d = GetComponent<Rigidbody2D>();
+
+        anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
+
     void Update() {
         float distToPlayer = Vector2.Distance(transform.position, player.position);
 
@@ -44,7 +49,6 @@ public class EnemyScript : MonoBehaviour{
 
                 }
             }
-            //StopChasingPlayer();
 
         }
         if (isAgro) {
@@ -52,29 +56,37 @@ public class EnemyScript : MonoBehaviour{
         }
     }
 
+
     void ChasePlayer() {
-        if(transform.position.x < player.position.x) {
+        if (anim.gameObject.activeSelf) {
+            anim.SetTrigger("Walking");
+        }
+
+        if (transform.position.x < player.position.x) {
             rb2d.velocity = new Vector2(speed, 0);
-            transform.localScale = new Vector2(1, 1);
+            transform.rotation = Quaternion.Euler(0, 180f, 0);
 
             isFacingLeft = false;
 
         } else {
             rb2d.velocity = new Vector2(-speed, 0);
-            transform.localScale = new Vector2(-1, 1);
-
+            transform.rotation = Quaternion.Euler(0, 0, 0);
             isFacingLeft = true;
         }
     }
+
 
     void StopChasingPlayer(){
         isAgro = false;
         isSearching = false; 
         rb2d.velocity = new Vector2(0, 0);
+        anim.SetTrigger("Idle");
 
     }
 
+
     bool CanSeePlayer(float distance) {
+        anim.SetTrigger("Idle");
         bool val = false;
         float castDist = distance;
 
@@ -87,16 +99,26 @@ public class EnemyScript : MonoBehaviour{
 
         if(hit.collider!= null) {
             if (hit.collider.gameObject.CompareTag("Player")) {
-                val = true; 
+                val = true;
 
             }else {
                 val = false; 
             }
-            Debug.DrawLine(castPoint.position, hit.point, Color.blue);
+            Debug.DrawLine(castPoint.position, hit.point, Color.red);
         } else {
             Debug.DrawLine(castPoint.position, endPos, Color.blue);
 
         }
         return val; 
+    }
+
+    public void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.CompareTag("Player")) {
+            //Hurt();
+        }
+    }
+
+    public void Hurt() {
+        Destroy(this.gameObject);
     }
 }

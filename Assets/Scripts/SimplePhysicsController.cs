@@ -11,7 +11,7 @@ public class SimplePhysicsController : MonoBehaviour
     public float jumpforce = 10;
     public bool onplatform;
     public float gravityInAir;
-    public int score = 0; 
+    public int score = 0;
     public float gravityScale;
     public Vector3 movementVector;
     int jumpcounter =1; 
@@ -79,6 +79,7 @@ public class SimplePhysicsController : MonoBehaviour
             if (GameObject.Find("Feet").GetComponent<GroundCheck2>().isGrounded == true) {
                 //thisRigidbody2D.gravityScale = 1;
 
+                SoundManagerScript.playSound("jump");
                 thisRigidbody2D.gravityScale = 0;
                 this.thisRigidbody2D.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
 
@@ -89,7 +90,8 @@ public class SimplePhysicsController : MonoBehaviour
             } else if (Input.GetKeyDown(KeyCode.Space) && doubleJump == true) {
                     thisRigidbody2D.gravityScale = 0;
                     this.thisRigidbody2D.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
-                    doubleJump = false;
+                SoundManagerScript.playSound("jump");
+                doubleJump = false;
 
                 }
             } else {
@@ -99,10 +101,31 @@ public class SimplePhysicsController : MonoBehaviour
         
     }
 
+    //public void Hurt(){} 
+
+
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Ground")) {
             isJumping = false; 
         }
+
+        if (other.gameObject.CompareTag("Platform")) {
+            isJumping = false;
+        }
+
+        if (other.gameObject.CompareTag("Enemy")) {
+            isJumping = false;
+        }
+
+
+        EnemyScript enemy = other.collider.GetComponent<EnemyScript>();
+        if(enemy != null) {
+            //Hurt(); //player is hurt
+            foreach(ContactPoint2D point in other.contacts) {
+                Debug.DrawLine(point.point, point.point +point.normal, Color.blue, 10);
+            }
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
