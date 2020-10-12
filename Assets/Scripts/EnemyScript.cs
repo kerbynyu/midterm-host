@@ -42,10 +42,13 @@ public class EnemyScript : MonoBehaviour{
             isAgro = true; 
 
         }else {
+            
+            Debug.Log("STOPPP");
             if(isAgro == true) {
                 if (isSearching) {
                     isSearching = true;
                     Invoke("StopChasingPlayer", 5);
+
 
                 }
             }
@@ -86,7 +89,7 @@ public class EnemyScript : MonoBehaviour{
 
 
     bool CanSeePlayer(float distance) {
-        anim.SetTrigger("Idle");
+       
         bool val = false;
         float castDist = distance;
 
@@ -112,6 +115,7 @@ public class EnemyScript : MonoBehaviour{
         return val; 
     }
 
+    /*
     public void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player")) {
             //Hurt();
@@ -121,4 +125,5 @@ public class EnemyScript : MonoBehaviour{
     public void Hurt() {
         Destroy(this.gameObject);
     }
+    */
 }

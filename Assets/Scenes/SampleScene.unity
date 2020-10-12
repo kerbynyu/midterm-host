@@ -574,7 +574,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0
+  m_EdgeRadius: 2
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
@@ -1214,7 +1214,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0
+  m_EdgeRadius: 2
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
@@ -1356,7 +1356,7 @@ GameObject:
   - component: {fileID: 228257270}
   m_Layer: 0
   m_Name: EnemyTest
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1401,7 +1401,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.31250143, y: 0.16832578}
+  m_Offset: {x: 0.07542032, y: 0.16832578}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1412,7 +1412,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.1424408, y: 2.3209832}
+  m_Size: {x: 2.3665972, y: 2.3209832}
   m_EdgeRadius: 0
 --- !u!50 &228257266
 Rigidbody2D:
@@ -1494,7 +1494,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228257262}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.22, y: -2.73, z: 0}
+  m_LocalPosition: {x: 34.04, y: -2.73, z: 0}
   m_LocalScale: {x: 0.44366643, y: 0.5098363, z: 1}
   m_Children:
   - {fileID: 14241233}
@@ -1515,7 +1515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 228257262}
   player: {fileID: 611878544}
-  agroRange: 3
+  agroRange: 1
   speed: 2
   castPoint: {fileID: 14241233}
 --- !u!95 &228257270
@@ -1601,7 +1601,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0
+  m_EdgeRadius: 2
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
@@ -2481,6 +2481,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2658,6 +2659,31 @@ AudioSource:
     - serializedVersion: 3
       time: 0
       value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!169 &519420034
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.22727273
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5765,7 +5791,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0
+  m_EdgeRadius: 2
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
@@ -6366,7 +6392,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0
+  m_EdgeRadius: 2
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []

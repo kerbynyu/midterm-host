@@ -19,6 +19,7 @@ public class SoundManagerScript : MonoBehaviour
 
         if(clip == "jump"){
 
+            audioSrc.pitch = (Random.Range(-0.2f,1.1f)); //changes pitch 
             audioSrc.PlayOneShot(jumpSound, 0.05F);
             
    
