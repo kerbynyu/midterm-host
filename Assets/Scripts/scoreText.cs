@@ -13,7 +13,7 @@ public class scoreText : MonoBehaviour{
     }
 
     void Update() {
-        scoreCounter = GameObject.Find("Player").GetComponent<SimplePhysicsController>().score;
+        scoreCounter= GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameMaster>().score;
         ScoreText.text = scoreCounter.ToString();  // make it a string to output to the Text object
     }
 }

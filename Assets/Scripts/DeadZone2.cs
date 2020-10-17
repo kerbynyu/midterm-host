@@ -13,12 +13,14 @@ public class DeadZone2 : MonoBehaviour {
     private void OnTriggerStay2D(Collider2D other) {
         if (other.CompareTag("Player")) {
             smoothCameraScript.inDeadZone = true;
+            smoothCameraScript.inCamera = true; 
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
         if (other.CompareTag("Player")) {
             smoothCameraScript.inDeadZone = false;
+            smoothCameraScript.inCamera = false;
         }
     }
 }

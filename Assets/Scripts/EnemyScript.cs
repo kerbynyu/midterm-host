@@ -4,34 +4,24 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour{
 
-    [SerializeField]
-    GameObject enemy;
+    public GameObject enemy;
+    public Transform player;
+    public float agroRange;
+    public float speed;
+    public bool isGrounded = false; 
+    public Transform castPoint;
+    public int jumpCount=0;
+    public bool isFacingLeft;
+    public Rigidbody2D rb2d;
+    public bool isAgro;
 
-    [SerializeField]
-    Transform player;
-
-    [SerializeField]
-    float agroRange;
-
-    [SerializeField]
-    float speed;
-
-    [SerializeField]
-    Transform castPoint;
-
-    bool isFacingLeft;
-    Rigidbody2D rb2d;
-
-    private bool isAgro;
     private bool isSearching;
-
-
     Animator anim;
 
     void Start(){
         rb2d = GetComponent<Rigidbody2D>();
-
         anim = GetComponent<Animator>();
+
     }
 
 
@@ -43,12 +33,10 @@ public class EnemyScript : MonoBehaviour{
 
         }else {
             
-            Debug.Log("STOPPP");
             if(isAgro == true) {
                 if (isSearching) {
                     isSearching = true;
                     Invoke("StopChasingPlayer", 5);
-
 
                 }
             }
@@ -56,6 +44,10 @@ public class EnemyScript : MonoBehaviour{
         }
         if (isAgro) {
             ChasePlayer();
+        }
+
+        if (GameObject.Find("Head").GetComponent<EnemyCollider>().isActive == false) {
+            this.gameObject.SetActive(false);
         }
     }
 
@@ -115,15 +107,5 @@ public class EnemyScript : MonoBehaviour{
         return val; 
     }
 
-    /*
-    public void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.CompareTag("Player")) {
-            //Hurt();
-        }
-    }
-
-    public void Hurt() {
-        Destroy(this.gameObject);
-    }
-    */
+   
 }

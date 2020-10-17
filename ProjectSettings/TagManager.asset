@@ -8,6 +8,10 @@ TagManager:
   - Ground
   - Platform
   - Enemy
+  - Game Manager
+  - CheckPoint
+  - EnemyHead
+  - scoreTag
   layers:
   - Default
   - TransparentFX

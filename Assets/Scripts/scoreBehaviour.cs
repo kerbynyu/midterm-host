@@ -4,20 +4,36 @@ using UnityEngine;
 
 public class scoreBehaviour : MonoBehaviour{
     public bool collected = false;
+    public GameMaster gm;
 
-    // Start is called before the first frame update
-    void Start() {
-        
+    private void Awake() {
+     
     }
 
-    // Update is called once per frame
-    void Update(){
-
+    private void Start() {
+        gm = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameMaster>();
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-         gameObject.SetActive(false);
-        collected = true; 
-       
+    public void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Player")) {
+            SoundManagerScript.playSound("collect");
+            this.gameObject.SetActive(false);
+            collected = true;
+            addScore();
+        }
+    }
+
+    public void OnTriggerStay2D(Collider2D other) {
+
+        if (other.gameObject.CompareTag("Player")) {
+            SoundManagerScript.playSound("collect");
+            this.gameObject.SetActive(false);
+            collected = true;
+            addScore();
+        }        
+    }
+
+    public void addScore() {
+        gm.score++;
     }
 }
