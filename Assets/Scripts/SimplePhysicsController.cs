@@ -13,7 +13,7 @@ public class SimplePhysicsController : MonoBehaviour {
     public float gravityInAir;
     public float gravityScale;
     public Vector3 movementVector;
-    Vector3 thisVelocty = Vector3.zero;
+    Vector3 thisVelocty = Vector3.zero*20;
     public float smoothTime = 0.3f;
     int jumpcounter = 1;
     public bool doubleJump = false;
@@ -23,7 +23,6 @@ public class SimplePhysicsController : MonoBehaviour {
 
     Animator anim;
     private GameMaster gm;
-    private SmoothCamera2 sc;
 
     void Start() {
         GetComponent<Rigidbody2D>();

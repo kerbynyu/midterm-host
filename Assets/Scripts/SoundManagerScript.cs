@@ -22,7 +22,6 @@ public class SoundManagerScript : MonoBehaviour
     void Start(){
         audioSrc = GetComponent<AudioSource>();
         jumpSound = Resources.Load<AudioClip>("jump");
-        chop = Resources.Load<AudioClip>("chop");
        
         note1 = Resources.Load<AudioClip>("note1");
         note2 = Resources.Load<AudioClip>("note2");
@@ -39,7 +38,7 @@ public class SoundManagerScript : MonoBehaviour
     public static void playSound(string clip) {
 
         if(clip == "jump"){
-            audioSrc.pitch = (Random.Range(-0.2f,1.1f)); //changes pitch 
+            audioSrc.pitch = (Random.Range(-0.3f,1.1f)); //changes pitch 
             audioSrc.PlayOneShot(jumpSound, 0.05F);
             
         }
@@ -49,10 +48,10 @@ public class SoundManagerScript : MonoBehaviour
             //addScore();
             var number = Random.Range(1, 8);
             if(number == 1) {
-                audioSrc.PlayOneShot(note1, 0.4F);
+                audioSrc.PlayOneShot(note1, 0.35F);
 
             } else if (number == 2) {
-                audioSrc.PlayOneShot(note2, 0.4F);
+                audioSrc.PlayOneShot(note2, 0.35F);
 
             }
             else if (number == 3) {
@@ -75,7 +74,7 @@ public class SoundManagerScript : MonoBehaviour
                 audioSrc.PlayOneShot(note7, 0.35F);
 
             }
-            else if (number == 2) {
+            else if (number == 8) {
                 audioSrc.PlayOneShot(note8, 0.35F);
 
             }
